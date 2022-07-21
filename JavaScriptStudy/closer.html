@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createCounterClosure(){
+            let count =0;
+            return{
+                increse: function(){
+                    count++;
+                },
+                getCount:function(){
+                    return count;
+                }
+            }
+        }
+
+        const counter1 = createCounterClosure();
+        const counter2 = createCounterClosure();
+
+        counter1.increse();
+        counter1.increse();
+        console.log('counter 1의 값 : '+counter1.getCount())
+        counter2.increse();
+        console.log('counter 2의 값 : '+counter2.getCount())
+
+    </script>
+</body>
+</html>
