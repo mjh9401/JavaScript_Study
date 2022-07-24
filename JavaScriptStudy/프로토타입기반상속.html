@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Storage(){
+            this.dataStore = {};
+        }
+
+        Storage.prototype.put = function(key,data){
+            this.dataStore[key] = data;
+        }
+        Storage.prototype.getData = function(key){
+            return this.dataStore[key];
+        }
+
+        const productStorage = new Storage();
+        productStorage.put('id001',{name:'키보드',price:2000});
+        console.log(productStorage.getData('id001'));
+
+        function RemovableStorage(){
+            Storage.call(this);
+        }
+
+        RemovableStorage.prototype = Object.create(Storage.prototype);
+        RemovableStorage.prototype.removeAll = function(){
+            this.dataStore = {}
+        }
+
+        const productStorage2 = new RemovableStorage();
+        productStorage2.put('id001',{name:'키보드',price:2000});
+        productStorage2.removeAll();
+        const itme2 = productStorage2.getData('id001');
+        console.log(itme2);
+
+    </script>
+</body>
+</html>
